@@ -1,53 +1,57 @@
-# hsrp-high-availability-network
-Implementation of a redundant network infrastructure using Cisco HSRP, Inter-VLAN routing, and DHCP services for 15 VLANs in Cisco Packet Tracer.
+# High-Availability Enterprise Network Infrastructure 🚀
+**A resilient multi-department network simulation featuring Cisco HSRP, Inter-VLAN routing, and DHCP services.**
 
-# High Availability Network Infrastructure with HSRP
+## 📌 Overview
+This project simulates a robust corporate network environment designed for 100% uptime. By implementing **HSRP (Hot Standby Router Protocol)**, the infrastructure ensures seamless gateway redundancy across 15 distinct VLANs, preventing any single point of failure.
 
-## 📌 Project Overview
-This repository contains a high-availability network project designed and simulated in **Cisco Packet Tracer**. The project focuses on implementing a redundant gateway solution using **HSRP (Hot Standby Router Protocol)** to ensure network resilience and 100% uptime for 15 distinct VLANs.
+> **Status:** Fully Verified & Documented ✅
 
-The architecture follows a hierarchical model (Core, Distribution, and Access) to simulate a robust corporate environment.
+## 🛠️ Tech Stack & Protocols
+- **Tool:** Cisco Packet Tracer
+- **Redundancy:** HSRP (Hot Standby Router Protocol)
+- **Routing:** Inter-VLAN Routing (Router-on-a-Stick)
+- **Switching:** VTP, STP, 802.1Q Trunking
+- **Services:** DHCP Server (IPv4 Pools per VLAN), ICMP (Verification)
 
-## 🚀 Key Features
-* **Gateway Redundancy:** Dual-router setup (Active/Standby) using HSRP.
-* **Inter-VLAN Routing:** Router-on-a-stick configuration with 802.1Q encapsulation.
-* **Dynamic Addressing:** Fully automated DHCP pools for all 15 VLAN segments.
-* **Network Segmentation:** Logical separation of departments/services via VLANs.
-* **Failover Validation:** Proven automatic recovery during primary link failure.
+## 📐 Network Architecture
+The design follows a hierarchical model (Core, Distribution, Access) to ensure scalability and manageability.
 
-## 🛠️ Technologies Used
-* **Simulation Tool:** Cisco Packet Tracer
-* **Protocols:** HSRP, IEEE 802.1Q (Dot1Q), DHCP, ICMP, VTP/STP.
-* **Infrastructure:** Cisco 2911 Routers, 2960 Switches, and End-Devices.
+### [Insira aqui a imagem: 01_Network_Topology_Overview.png]
+*Full view of the 15 departments (Management, HR, Sales, Marketing, etc.) segmenting the broadcast domains.*
+
+## ⚙️ Core Configurations
+
+### 1. Gateway Redundancy (HSRP)
+I configured a dual-router setup (Active/Standby). If the primary router (R1-CORE-A) fails, the secondary (R2-CORE-B) takes over the virtual IP (VIP) instantly.
+
+**Active Router State (R1):**
+### [Insira aqui a imagem: 02_R1_HSRP_Active_State_Brief.png]
+
+**Standby Router State (R2):**
+### [Insira aqui a imagem: 03_R2_HSRP_Active_State_Brief.png]
+
+### 2. VLAN & DHCP Services
+Each department has a dedicated DHCP pool configured directly on the Core routers to automate IP assignment.
+
+### [Insira aqui a imagem: 06_DHCP_Pool_Configuration_CLI.png]
+*Example of the DHCP pools for VLANs 10 through 150.*
+
+## 🧪 Verification & Failover Tests
+
+### Connectivity Test (Inter-VLAN)
+Ping tests confirm that traffic flows correctly between different departments through the HSRP virtual gateway.
+### [Insira aqui a imagem: 08_InterVLAN_Ping_Test_Success.png]
+
+### Failover Simulation
+A critical test was performed by disabling the primary link. The simulation logs confirm that HSRP traffic migrated to the backup router in seconds without user intervention.
+### [Insira aqui a imagem: 09_HSRP_Failover_Simulation_Verified.png]
 
 ## 📁 Repository Structure
-* `/topology`: Contains the `.pkt` (Packet Tracer) source file.
-* `/documentation`: Contains screenshots of CLI configurations and verification tests.
-* `README.md`: Project documentation and summary.
-
-## 📊 Network Configuration Details
-The network is divided into 15 VLANs (10-150). Each VLAN uses the `.254` address as its Virtual IP (VIP) for the default gateway.
-
-| VLAN ID | Subnet | Gateway (VIP) | HSRP Role |
-| :--- | :--- | :--- | :--- |
-| 10 - 150 | 192.168.X.0/24 | 192.168.X.254 | R1 (Active) / R2 (Standby) |
-
-## 🧪 Verification & Testing
-### 1. HSRP Status
-Verification of the Active and Standby roles was performed using the `show standby brief` command, ensuring that R1 manages all traffic while R2 remains in a ready state.
-
-### 2. Connectivity Test
-Inter-VLAN communication was validated through ICMP ping tests from end-devices to their respective virtual gateways and across different network segments.
-
-### 3. Failover Simulation
-A critical test was performed by disabling the primary interface on **R1-CORE-A**. The simulation confirmed that **R2-CORE-B** successfully assumed the Active role in seconds, maintaining connectivity for all users without manual reconfiguration.
-
-## 📸 Screenshots
-*(Include your numbered screenshots here or link them from the documentation folder)*
-
-## 📄 Conclusion
-This project demonstrates the practical application of high-availability protocols in modern networking. It ensures that the infrastructure can withstand hardware failures without impacting the end-user experience.
+- `/topology`: Contains the `.pkt` (Cisco Packet Tracer) source file.
+- `/documentation`: High-resolution screenshots of CLI configurations and verification tests.
+- `README.md`: Project summary and technical details.
 
 ---
-**Developed by:** [Eduardo]  
-**Date:** January 2026
+**Developed by:** Eduardo Almeida  
+**Date:** January 2026  
+*Connect with me for Network Infrastructure and Support projects.*
