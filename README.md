@@ -1,55 +1,44 @@
 # High-Availability Enterprise Network Infrastructure 🚀
-**A resilient multi-department network simulation featuring Cisco HSRP, Inter-VLAN routing, and DHCP services.**
+**A resilient multi-department network infrastructure featuring Cisco HSRP, VLAN segmentation, and automated services.**
 
 ## 📌 Overview
 This project simulates a robust corporate network environment designed for 100% uptime. By implementing **HSRP (Hot Standby Router Protocol)**, the infrastructure ensures seamless gateway redundancy across 15 distinct VLANs, preventing any single point of failure.
 
 > **Status:** Fully Verified & Documented ✅
 
+## 📐 Network Topology
+![Network Topology Overview](./print/01_Network_Topology_Overview.png)
+*Full view of the 15 departments segmenting the broadcast domains.*
+
 ## 🛠️ Tech Stack & Protocols
 - **Tool:** Cisco Packet Tracer
 - **Redundancy:** HSRP (Hot Standby Router Protocol)
 - **Routing:** Inter-VLAN Routing (Router-on-a-Stick)
 - **Switching:** VTP, STP, 802.1Q Trunking
-- **Services:** DHCP Server (IPv4 Pools per VLAN), ICMP (Verification)
+- **Services:** DHCP Server (IPv4 Pools per VLAN)
 
-## 📐 Network Architecture
-The design follows a hierarchical model (Core, Distribution, Access) to ensure scalability and manageability.
-
-### [Insira aqui a imagem: 01_Network_Topology_Overview.png]
-*Full view of the 15 departments (Management, HR, Sales, Marketing, etc.) segmenting the broadcast domains.*
-
-## ⚙️ Core Configurations
+## ⚙️ Core Configurations & Redundancy
 
 ### 1. Gateway Redundancy (HSRP)
-I configured a dual-router setup (Active/Standby). If the primary router (R1-CORE-A) fails, the secondary (R2-CORE-B) takes over the virtual IP (VIP) instantly.
+I configured a dual-router setup (Active/Standby). If the primary router fails, the secondary takes over the virtual IP (VIP) instantly.
 
-**Active Router State (R1):**
-### [Insira aqui a imagem: 02_R1_HSRP_Active_State_Brief.png]
+| Active Router State (R1) | Standby Router State (R2) |
+|---|---|
+| ![R1 Active State](./print/02_R1_HSRP_Active_State_Brief.png) | ![R2 Standby State](./print/03_R2_HSRP_Active_State_Brief.png) |
 
-**Standby Router State (R2):**
-### [Insira aqui a imagem: 03_R2_HSRP_Active_State_Brief.png]
-
-### 2. VLAN & DHCP Services
-Each department has a dedicated DHCP pool configured directly on the Core routers to automate IP assignment.
-
-### [Insira aqui a imagem: 06_DHCP_Pool_Configuration_CLI.png]
-*Example of the DHCP pools for VLANs 10 through 150.*
+### 2. DHCP Infrastructure
+Automated IP assignment for all 15 VLANs configured directly on the Core.
+![DHCP Pool Configuration](./print/06_DHCP_Pool_Configuration_CLI.png)
 
 ## 🧪 Verification & Failover Tests
 
 ### Connectivity Test (Inter-VLAN)
 Ping tests confirm that traffic flows correctly between different departments through the HSRP virtual gateway.
-### [Insira aqui a imagem: 08_InterVLAN_Ping_Test_Success.png]
+![InterVLAN Ping Test](./print/08_InterVLAN_Ping_Test_Success.png)
 
 ### Failover Simulation
-A critical test was performed by disabling the primary link. The simulation logs confirm that HSRP traffic migrated to the backup router in seconds without user intervention.
-### [Insira aqui a imagem: 09_HSRP_Failover_Simulation_Verified.png]
-
-## 📁 Repository Structure
-- `/topology`: Contains the `.pkt` (Cisco Packet Tracer) source file.
-- `/documentation`: High-resolution screenshots of CLI configurations and verification tests.
-- `README.md`: Project summary and technical details.
+Critical test performed by disabling the primary link. HSRP traffic migrated to the backup router in seconds.
+![HSRP Failover Simulation](./print/09_HSRP_Failover_Simulation_Verified.png)
 
 ---
 **Developed by:** Eduardo Almeida  
