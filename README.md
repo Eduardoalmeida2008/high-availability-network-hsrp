@@ -7,7 +7,7 @@ This project simulates a robust corporate network environment designed for 100% 
 > **Status:** Fully Verified & Documented ✅
 
 ## 📐 Network Topology
-![Network Topology Overview](01_Network_Topology_Overview.png)
+![Network Topology Overview](01_network_topology_logical.png)
 *Full view of the 15 departments segmenting the broadcast domains.*
 
 ## 🛠️ Tech Stack & Protocols
@@ -24,21 +24,21 @@ I configured a dual-router setup (Active/Standby). If the primary router fails, 
 
 | Active Router State (R1) | Standby Router State (R2) |
 |---|---|
-| ![R1 Active State](02_R1_HSRP_Active_State_Brief.png) | ![R2 Standby State](03_R2_HSRP_Active_State_Brief.png) |
+| ![R1 Active State](15_Status_HSRP_Active.png) | ![R2 Standby State](16_Status_HSRP_Standby.png) |
 
 ### 2. DHCP Infrastructure
 Automated IP assignment for all 15 VLANs configured directly on the Core.
-![DHCP Pool Configuration](06_DHCP_Pool_Configuration_CLI.png)
+![DHCP Pool Configuration](10_dhcp_pools_configurations.png)
 
 ## 🧪 Verification & Failover Tests
 
 ### Connectivity Test (Inter-VLAN)
 Ping tests confirm that traffic flows correctly between different departments through the HSRP virtual gateway.
-![InterVLAN Ping Test](08_InterVLAN_Ping_Test_Success.png)
+![InterVLAN Ping Test](20_Test_Ping_ACL_VLAN10.png)
 
 ### Failover Simulation
 Critical test performed by disabling the primary link. HSRP traffic migrated to the backup router in seconds.
-![HSRP Failover Simulation](09_HSRP_Failover_Simulation_Verified.png)
+![HSRP Failover Simulation](17_Simulation_Flow_HSRP.png)
 
 ---
 **Developed by:** Eduardo Almeida  
